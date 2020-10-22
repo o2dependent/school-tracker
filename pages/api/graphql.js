@@ -1,10 +1,13 @@
 // Imports
-import { ApolloServer, gql } from 'apollo-server-micro';
-import { notesMutations } from '../../api/notes/mutations';
-import { notesResolvers } from '../../api/notes/resolvers';
 import connectDb from '../../lib/mongoose';
 import { mergeResolvers, mergeTypeDefs } from 'graphql-tools';
 import Notes from '../../api/notes/Notes.graphql';
+import { ApolloServer, gql } from 'apollo-server-micro';
+import { notesMutations } from '../../api/notes/mutations';
+import { notesResolvers } from '../../api/notes/resolvers';
+import Assignments from '../../api/assignments/Assignments.graphql';
+import { assignmentsMutations } from '../../api/assignments/mutations';
+import { assignmentsResolvers } from '../../api/assignments/resolvers';
 
 // GraphQL type definitions
 
@@ -14,7 +17,7 @@ const fakeTypeDefs = gql`
 	}
 `;
 
-const typeDefs = mergeTypeDefs([fakeTypeDefs, Notes]);
+const typeDefs = mergeTypeDefs([fakeTypeDefs, Notes, Assignments]);
 
 // GraphQL resolvers
 
@@ -30,6 +33,8 @@ const resolvers = mergeResolvers([
 	fakeResolvers,
 	notesResolvers,
 	notesMutations,
+	assignmentsResolvers,
+	assignmentsMutations,
 ]);
 
 // Apollo server

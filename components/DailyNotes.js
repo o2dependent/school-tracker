@@ -19,7 +19,6 @@ export default function DailyNotes() {
 	let notes;
 	if (!loading) notes = data.notes;
 
-	console.log(notes);
 	return (
 		<section>
 			<h1>Daily Notes</h1>

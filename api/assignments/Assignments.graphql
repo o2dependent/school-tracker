@@ -1,0 +1,23 @@
+type Assignment {
+	_id: ID!
+	title: String!
+	body: String!
+	grade: Float!
+	completed: Boolean!
+}
+
+input AssignmentInput {
+	_id: ID
+	title: String!
+	body: String!
+	grade: Float
+	completed: Boolean!
+}
+
+type Mutation {
+	addAssignment(assignment: AssignmentInput): Assignment
+}
+
+type Query {
+	assignments: [Assignment]
+}

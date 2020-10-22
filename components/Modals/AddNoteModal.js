@@ -2,6 +2,7 @@ import { useMutation } from '@apollo/react-hooks';
 import React, { useState } from 'react';
 import Modal from '../Styled💅/ModalStyles';
 import gql from 'graphql-tag';
+import { Button, Form, TextInput } from '../Styled💅/InputStyles';
 
 const ADD_NOTE = gql`
 	mutation addNote($note: NoteInput) {
@@ -23,29 +24,29 @@ export default function AddNoteModal({ isNoteModalOpen, setIsNoteModalOpen }) {
 
 	return (
 		<Modal isModalOpen={isNoteModalOpen} closeModal={closeModal}>
-			<form
-				onSubmit={(e) => {
-					e.preventDefault();
-					console.log(noteBody);
-					addNote({
-						variables: {
-							note: {
-								body: noteBody,
+			<Form
+				handleSubmit={() => {
+					if (noteBody !== '') {
+						addNote({
+							variables: {
+								note: {
+									body: noteBody,
+								},
 							},
-						},
-					});
-					setNoteBody('');
-					closeModal();
+						});
+						setNoteBody('');
+						closeModal();
+					}
 				}}
 			>
-				<input
-					type='text'
+				<TextInput
 					name='note'
+					label={'Note body'}
 					value={noteBody}
 					onChange={(e) => setNoteBody(e.target.value)}
 				/>
-				<button type='submit'>Submit</button>
-			</form>
+				<Button type='submit'>Submit</Button>
+			</Form>
 		</Modal>
 	);
 }

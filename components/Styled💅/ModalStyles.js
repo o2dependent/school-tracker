@@ -3,6 +3,7 @@ import { useRef } from 'react';
 import styled from 'styled-components';
 import useLockScroll from '../../hooks🎣/useLockScroll';
 import useOnClickOutside from '../../hooks🎣/useOnClickOutside';
+import styles from '../../styles/styles';
 
 const ModalWrapper = styled(motion.div)`
 	position: fixed;
@@ -24,13 +25,13 @@ const ModalBody = styled(motion.div)`
 	top: 50%;
 	left: 50%;
 	transform: translate(-50%, -50%);
-	border-radius: 5px;
+	${styles.borderRadius(1)}
 	padding: 1.5rem 1rem;
 	padding-top: 0.5rem;
 	z-index: 9999;
 	// Colors to be determined by global style theme
-	background: #aba5db;
-	color: inherit;
+	background: ${styles.modalCard.modalBody};
+	color: ${styles.modalCard.color};
 	// Internal element styles
 `;
 
@@ -61,8 +62,8 @@ const XButton = styled.div`
 		left: 50%;
 		transform: rotate(-45deg);
 		height: 100%;
-		width: 0.06rem;
-		background: black;
+		width: 0.07rem;
+		background: #fefefe;
 	}
 	&::before {
 		border-radius: 5px;
@@ -72,8 +73,8 @@ const XButton = styled.div`
 		right: 50%;
 		transform: rotate(45deg);
 		height: 100%;
-		width: 0.06rem;
-		background: black;
+		width: 0.07rem;
+		background: #fefefe;
 	}
 `;
 
